@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.awt.image.BufferedImage;
 
 /**
- * describe:
+ * describe:应用业务流程测试部分
  *
  * @author lianying
  * @date 2019/1/6

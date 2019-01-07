@@ -17,11 +17,16 @@ import java.net.URL;
  * @date 2019/1/5
  */
 public class ImageUtilsTest {
+    /**
+     * 尝试在本机的屏幕截图上寻找testImage图像
+     *
+     * @throws URISyntaxException
+     */
     @Test
     public void imageUtilsTest() throws URISyntaxException {
         BufferedImage bufferedImage = ImageUtils.getScreen();
-        BufferedImage bufferedImage1 = ImageUtils.getBufferedImage("images/wwy.png");
-        Coordinate coordinate = ImageUtils.find(bufferedImage, bufferedImage1);
+        BufferedImage testImage = ImageUtils.getBufferedImage("images/wwy.png");
+        Coordinate coordinate = ImageUtils.find(bufferedImage, testImage);
         if (coordinate != null) {
             System.out.println("x:" + coordinate.getX() + "-- y:" + coordinate.getY());
             MouseUtils.moveAndOnclickLeft(coordinate.getX(), coordinate.getY());
@@ -31,6 +36,9 @@ public class ImageUtilsTest {
 
     }
 
+    /**
+     * 测试两个int数组是否属于包含关系
+     */
     @Test
     public void findTest() {
         int[] bytes = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
@@ -44,11 +52,16 @@ public class ImageUtilsTest {
         ImageUtils.getScreen();
     }
 
+    /**
+     * 测试图片转换成int数组
+     *
+     * @throws URISyntaxException
+     */
     @Test
-    public void getBytesTest() throws URISyntaxException {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("test.bmp");
+    public void getIntArrayTest() throws URISyntaxException {
+        URL url = Thread.currentThread().getContextClassLoader().getResource("test.png");
         BufferedImage bufferedImage1 = ImageUtils.getBufferedImage(new File(url.toURI()));
-        int[] bytes = ImageUtils.getIntArray(bufferedImage1);
-        System.out.println(bytes.length);
+        int[] intArray = ImageUtils.getIntArray(bufferedImage1);
+        System.out.println(intArray.length);
     }
 }

@@ -76,7 +76,7 @@ public class ImageUtils {
                 }
             }
         }
-        //如果循环到这里还没return index说明没有相似度大于0.9的数组了。也就是没有包含该数组
+        //如果循环到这里还没return index说明没有包含该数组
         return -1;
     }
 
@@ -140,13 +140,17 @@ public class ImageUtils {
             //这个是小图的第someLen行数组
             int[] arg2 = new int[tag.getWidth()];
             System.arraycopy(tagArray, someLen*tag.getWidth(), arg2, 0, tag.getWidth());
-            //对比完大于-1说明，这行包含了小图的第一行。
+            //对比完大于-1说明，大图的第i行包含了小图的第someLen行。
             int pos = find(arg1, arg2);
             if (pos > -1) {
+                //如果相似行数为0说明这个是第一行相同行。要记录x的值
+                if(someLen==0)
+                {
+                    x = pos;
+                }
                 //相似行数+1
                 someLen++;
-                x = pos;
-                //如果相似度大于0.9
+                //如果相同行等于小图的数组行数，说明这部分区域包含了小图所有的行。返回结果
                 if (someLen==(tag.getHeight()-1)) {
                     Coordinate coordinate = new Coordinate(x, i - tag.getHeight());
                     return coordinate;
