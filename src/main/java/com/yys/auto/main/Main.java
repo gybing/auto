@@ -27,7 +27,7 @@ public class Main {
     }
 
     public static void yaoqi() {
-        go("images/test3.png");
+        go("images/wwy.png");
         goTeam();
     }
 

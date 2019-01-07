@@ -11,9 +11,8 @@ public class Coordinate {
     int y;
 
     public Coordinate(int x, int y) {
-        //这里进行修正偏移量
-        this.x = x + 20;
-        this.y = y + 20;
+        this.x = x ;
+        this.y = y;
     }
 
     public int getX() {

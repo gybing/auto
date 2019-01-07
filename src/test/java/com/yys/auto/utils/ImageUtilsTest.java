@@ -20,7 +20,7 @@ public class ImageUtilsTest {
     @Test
     public void imageUtilsTest() throws URISyntaxException {
         BufferedImage bufferedImage = ImageUtils.getScreen();
-        BufferedImage bufferedImage1 = ImageUtils.getBufferedImage("images/test3.png");
+        BufferedImage bufferedImage1 = ImageUtils.getBufferedImage("images/wwy.png");
         Coordinate coordinate = ImageUtils.find(bufferedImage, bufferedImage1);
         if (coordinate != null) {
             System.out.println("x:" + coordinate.getX() + "-- y:" + coordinate.getY());

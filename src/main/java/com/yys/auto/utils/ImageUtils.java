@@ -62,7 +62,7 @@ public class ImageUtils {
         //相同的int下标起始位
         int index = -1;
         for (int i = 0; i < src.length - tag.length; i++) {
-            //如果两个相同，需要登记他的起始下标，相同个数加1，并判断相似度
+            //如果两个相同，需要登记他的起始下标，相同个数加1
             for (int j = 0; j < tag.length; j++) {
                 if (src[i + j] != tag[j]) {
                     break;
@@ -139,7 +139,7 @@ public class ImageUtils {
             System.arraycopy(srcArray, i * src.getWidth(), arg1, 0, src.getWidth());
             //这个是小图的第someLen行数组
             int[] arg2 = new int[tag.getWidth()];
-            System.arraycopy(tagArray, someLen, arg2, 0, tag.getWidth());
+            System.arraycopy(tagArray, someLen*tag.getWidth(), arg2, 0, tag.getWidth());
             //对比完大于-1说明，这行包含了小图的第一行。
             int pos = find(arg1, arg2);
             if (pos > -1) {
@@ -147,7 +147,7 @@ public class ImageUtils {
                 someLen++;
                 x = pos;
                 //如果相似度大于0.9
-                if (someLen + 1.0 / tag.getWidth() > 0.9) {
+                if (someLen==(tag.getHeight()-1)) {
                     Coordinate coordinate = new Coordinate(x, i - tag.getHeight());
                     return coordinate;
                 }
