@@ -108,7 +108,7 @@ public class ImageUtils {
     public static BufferedImage getBufferedImage(String name) {
         InputStream in = null;
         try {
-            in = new FileInputStream(new File(PathUtils.getClassPath() + name));
+            in = new FileInputStream(new File(PathUtils.getPath()+"/" + name));
             BufferedImage bi = ImageIO.read(in);
             in.close();
             return bi;

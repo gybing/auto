@@ -11,6 +11,7 @@ import java.net.URL;
  * @date 2019/1/6
  */
 public class PathUtils {
+    public static String path=null;
     /**
      * 获得class路径,如果获取失败就默认D盘根目录
      *
@@ -25,5 +26,23 @@ public class PathUtils {
             e.printStackTrace();
         }
         return "D:/";
+    }
+
+    /**
+     * 获得素材路径
+     *
+     * @return
+     */
+    public static String getPath()
+    {
+        return path;
+    }
+
+    /**
+     * 设置素材路径
+     */
+    public static void setPath(String filePath)
+    {
+        path=filePath;
     }
 }
