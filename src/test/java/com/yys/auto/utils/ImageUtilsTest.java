@@ -59,7 +59,7 @@ public class ImageUtilsTest {
      */
     @Test
     public void getIntArrayTest() throws URISyntaxException {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("test.png");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("wwy.png");
         BufferedImage bufferedImage1 = ImageUtils.getBufferedImage(new File(url.toURI()));
         int[] intArray = ImageUtils.getIntArray(bufferedImage1);
         System.out.println(intArray.length);
