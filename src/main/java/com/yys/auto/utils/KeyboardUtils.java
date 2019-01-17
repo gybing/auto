@@ -1,5 +1,7 @@
 package com.yys.auto.utils;
 
+import org.apache.log4j.Logger;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -11,6 +13,10 @@ import java.awt.event.KeyEvent;
  */
 public class KeyboardUtils {
     private static Robot robot;
+    /**
+     * log4j
+     */
+    private static final Logger logger=Logger.getLogger(KeyboardUtils.class);
 
     static {
         try {
@@ -18,7 +24,7 @@ public class KeyboardUtils {
             double ms = Math.random() * 100;
             robot.setAutoDelay((int) ms);
         } catch (AWTException e) {
-            e.printStackTrace();
+            logger.error("获取Robot失败",e);
         }
     }
 

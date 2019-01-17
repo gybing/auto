@@ -1,6 +1,8 @@
 package com.yys.auto.core;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yys.auto.entity.Action;
+import org.apache.log4j.Logger;
 
 /**
  * describe:动作执行者
@@ -9,6 +11,10 @@ import com.yys.auto.entity.Action;
  * @date 2019/01/15
  */
 public class ActionExecutor {
+    /**
+     * log4j
+     */
+    private static final Logger logger= Logger.getLogger(ActionExecutor.class);
     /**
      * 动作执行
      *
@@ -41,6 +47,8 @@ public class ActionExecutor {
                 default:
                     result=false;
         }
+        logger.info("执行了动作："+ JSONObject.toJSONString(action));
+        logger.info("执行结果："+result);
         return result;
     }
 

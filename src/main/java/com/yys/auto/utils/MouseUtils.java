@@ -1,5 +1,7 @@
 package com.yys.auto.utils;
 
+import org.apache.log4j.Logger;
+
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -12,7 +14,10 @@ import java.awt.event.KeyEvent;
  */
 public class MouseUtils {
 
-
+    /**
+     * log4j
+     */
+    private static final Logger logger= Logger.getLogger(MouseUtils.class);
     private static Robot robot;
 
     static {
@@ -20,7 +25,7 @@ public class MouseUtils {
             robot = new Robot();
             robot.setAutoDelay(500);
         } catch (AWTException e) {
-            e.printStackTrace();
+            logger.error("获取Robot失败",e);
         }
     }
 

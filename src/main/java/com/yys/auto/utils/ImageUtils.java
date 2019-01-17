@@ -1,6 +1,7 @@
 package com.yys.auto.utils;
 
 import com.yys.auto.entity.Coordinate;
+import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,6 +15,10 @@ import java.io.*;
  * @date 2019/1/5
  */
 public class ImageUtils {
+    /**
+     * log4j
+     */
+    private static final Logger logger= Logger.getLogger(ImageUtils.class);
     /**
      * 获取屏幕截图
      *
@@ -32,7 +37,7 @@ public class ImageUtils {
             BufferedImage bi = rb.createScreenCapture(rec);
             return bi;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("获取截图失败",e);
         }
         return null;
     }
@@ -47,7 +52,6 @@ public class ImageUtils {
 
         int[] a = new int[image.getWidth() * image.getHeight()];
         image.getRGB(0, 0, image.getWidth(), image.getHeight(), a, 0, image.getWidth());
-
         return a;
     }
 
@@ -94,7 +98,9 @@ public class ImageUtils {
             in.close();
             return bi;
         } catch (FileNotFoundException e) {
+            logger.error("文件未找到",e);
         } catch (IOException e) {
+            logger.error("IO异常",e);
         }
         return null;
     }
@@ -113,9 +119,9 @@ public class ImageUtils {
             in.close();
             return bi;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error("文件未找到",e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("IO异常",e);
         }
         return null;
     }

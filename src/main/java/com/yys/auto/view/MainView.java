@@ -2,6 +2,7 @@ package com.yys.auto.view;
 
 import com.yys.auto.core.ScriptExecutor;
 import com.yys.auto.utils.PathUtils;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,10 @@ import java.io.*;
  * @date 2019/01/15
  */
 public class MainView implements ActionListener{
+    /**
+     * log4j
+     */
+    private final Logger logger= Logger.getLogger(MainView.class);
     JFrame frame = new JFrame("java自动化");
     JTabbedPane tabPane = new JTabbedPane();
     Container con = new Container();
@@ -84,6 +89,7 @@ public class MainView implements ActionListener{
                 // f为选择到的目录
                 File f = jfc.getSelectedFile();
                 dicInput.setText(f.getAbsolutePath());
+                logger.info("设置素材文件夹:"+f.getAbsolutePath());
                 PathUtils.setPath(f.getAbsolutePath());
             }
         }
@@ -99,22 +105,25 @@ public class MainView implements ActionListener{
             } else {
                 // scriptFile为选择到的脚本文件
                 scriptFile = jfc.getSelectedFile();
+                logger.info("选择了脚本文件:"+scriptFile.getAbsolutePath());
                 scriptInput.setText(scriptFile.getAbsolutePath());
             }
         }
         if (e.getSource().equals(button3)) {
             //将脚本文件内的内容读取并运行
+            logger.info("开始运行脚本！");
             FileInputStream fileInputStream = null;
             try {
                 fileInputStream=new FileInputStream(scriptFile);
                 byte [] bytes=new byte[(int) scriptFile.length()];
                 fileInputStream.read(bytes);
                 scriptString=new String(bytes);
+                logger.info("读取到了脚本内容："+scriptString);
             } catch (FileNotFoundException e1) {
-                e1.printStackTrace();
+                logger.info("文件不存在",e1);
                 JOptionPane.showMessageDialog(null, "文件不存在", "提示", 2);
             } catch (IOException e1) {
-                e1.printStackTrace();
+                logger.info("IO错误",e1);
                 JOptionPane.showMessageDialog(null, "IO错误", "提示", 2);
             }finally {
                 //不过如何这里都要执行关闭
