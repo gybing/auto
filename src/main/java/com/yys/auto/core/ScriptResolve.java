@@ -18,15 +18,16 @@ public class ScriptResolve {
     {}
 
     /**
-     * 将字符串解析成流程数组
+     * 将字符串解析成流程块数组
      *
-     * @param s
+     * @param script
      * @return
      */
-    public static List<Process> parseProcess(String s)
+    public static List<Process> parseProcess(String script)
     {
+
         String [] strings = new String[0];
-        strings = JSONObject.parseObject(s,strings.getClass());
+        strings = JSONObject.parseObject(script,strings.getClass());
         List<Process> processes=new ArrayList<>();
         for (String p:strings) {
             processes.add(new Process(parseAction(p)));

@@ -8,9 +8,10 @@ import com.yys.auto.entity.Action;
  * @author lianying
  * @date 2019/01/15
  */
-public class ActionRunner {
+public class ActionExecutor {
     /**
      * 动作执行
+     *
      * @param action
      * @return
      */
@@ -20,12 +21,15 @@ public class ActionRunner {
         switch (action.getLabel())
         {
             case "fac":
+                //寻找，然后鼠标移动并点击
                 result=AutoCore.findImageAndOnclick(action.getParams());
                 break;
             case "i":
+                //输入
                 result=AutoCore.input(action.getParams());
                 break;
             case "s":
+                //睡眠
                 try {
                     Thread.sleep(Integer.valueOf(action.getParams()));
                     result=true;

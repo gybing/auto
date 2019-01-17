@@ -1,11 +1,10 @@
 package com.yys.auto;
 
-import com.yys.auto.core.ScriptRunner;
 import com.yys.auto.view.MainView;
 
 
 /**
- * describe:
+ * describe:启动类
  *
  * @author lianying
  * @date 2019/1/5
@@ -13,6 +12,7 @@ import com.yys.auto.view.MainView;
 public class AppStarter {
 
     public static void main(String[] args){
+        //启动主视图
         new MainView();
     }
 }

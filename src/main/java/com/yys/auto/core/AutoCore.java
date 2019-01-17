@@ -21,11 +21,14 @@ public class AutoCore {
      * @return
      */
     public static boolean findImageAndOnclick(String name) {
+        //获得屏幕截图
         BufferedImage bufferedImage = ImageUtils.getScreen();
+        //获得素材小图
         BufferedImage bufferedImage1 = ImageUtils.getBufferedImage(name);
+        //寻找小图坐标
         Coordinate coordinate = ImageUtils.find(bufferedImage, bufferedImage1);
         if (coordinate != null) {
-            System.out.println("x:" + coordinate.getX() + "-- y:" + coordinate.getY());
+            //如果coordinate对象不为空说明有查找到内容，鼠标移动并点击
             MouseUtils.moveAndOnclickLeft(coordinate.getX(), coordinate.getY());
             return true;
         }
