@@ -262,6 +262,9 @@ public class KeyboardUtils {
             case '9':
                 event = KeyEvent.VK_9;
                 break;
+            case '.':
+                event = KeyEvent.VK_PERIOD;
+                break;
         }
         //小写的话直接按一次
         if (isLower) {
