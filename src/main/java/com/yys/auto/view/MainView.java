@@ -26,12 +26,15 @@ public class MainView implements ActionListener{
     Container con = new Container();
     JLabel selectDicLabel = new JLabel("选择素材目录");
     JLabel selectScriptLabel = new JLabel("选择脚本");
+    JLabel loopTimes= new JLabel("循环次数");
     JTextField dicInput = new JTextField();
     JTextField scriptInput = new JTextField();
+    JTextField loopTimesInput = new JTextField();
     JButton selectDicBt = new JButton("...");
     JButton selectScriptBt = new JButton("...");
+    JButton loopTimesBt = new JButton("确定");
     JFileChooser jfc = new JFileChooser();
-    JButton button3 = new JButton("运行");
+    JButton runBt = new JButton("运行");
     private File scriptFile;
     private String scriptString;
 
@@ -44,27 +47,35 @@ public class MainView implements ActionListener{
         // 设定窗口出现位置
         frame.setLocation(new Point((int) (lx / 2) - 150, (int) (ly / 2) - 150));
         // 设定窗口大小
-        frame.setSize(380, 200);
+        frame.setSize(380, 300);
         // 设置布局
         frame.setContentPane(tabPane);
         selectDicLabel.setBounds(10, 10, 120, 20);
         dicInput.setBounds(130, 10, 120, 20);
-        selectDicBt.setBounds(260, 10, 50, 20);
+        selectDicBt.setBounds(260, 10, 60, 20);
         selectScriptLabel.setBounds(10, 35, 120, 20);
         scriptInput.setBounds(130, 35, 120, 20);
-        selectScriptBt.setBounds(260, 35, 50, 20);
-        button3.setBounds(30, 60, 60, 20);
+        selectScriptBt.setBounds(260, 35, 60, 20);
+        runBt.setBounds(30, 95, 60, 20);
+        loopTimes.setBounds(10, 60, 120, 20);
+        loopTimesInput.setBounds(130, 60, 120, 20);
+        loopTimesInput.setText("99999");
+        loopTimesBt.setBounds(260, 60, 60, 20);
         // 添加事件处理
         selectDicBt.addActionListener(this);
         selectScriptBt.addActionListener(this);
-        button3.addActionListener(this);
+        runBt.addActionListener(this);
+        loopTimesBt.addActionListener(this);
         con.add(selectDicLabel);
         con.add(dicInput);
         con.add(selectDicBt);
         con.add(selectScriptLabel);
         con.add(scriptInput);
         con.add(selectScriptBt);
-        con.add(button3);
+        con.add(runBt);
+        con.add(loopTimes);
+        con.add(loopTimesInput);
+        con.add(loopTimesBt);
         // 窗口可见
         frame.setVisible(true);
         // 使能关闭窗口，结束程序
@@ -109,7 +120,7 @@ public class MainView implements ActionListener{
                 scriptInput.setText(scriptFile.getAbsolutePath());
             }
         }
-        if (e.getSource().equals(button3)) {
+        if (e.getSource().equals(runBt)) {
             //将脚本文件内的内容读取并运行
             logger.info("开始运行脚本！");
             FileInputStream fileInputStream = null;
@@ -136,8 +147,12 @@ public class MainView implements ActionListener{
                     e1.printStackTrace();
                 }
             }
-            //运行脚本
-            ScriptExecutor.run(scriptString);
+            //获得循环次数
+           Integer times=Integer.valueOf(loopTimesInput.getText());
+            for (Integer i = 0; i < times; i++) {
+                //运行脚本
+                ScriptExecutor.run(scriptString);
+            }
         }
     }
 

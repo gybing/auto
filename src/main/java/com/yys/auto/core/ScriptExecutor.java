@@ -34,6 +34,12 @@ public class ScriptExecutor {
                     break;
                 }
             }
+            //执行完一个流程睡眠两秒
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
